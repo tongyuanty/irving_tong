@@ -4,10 +4,10 @@
     Public Function Scan(ByVal dictPara As KFO.Dictionary)
         Return frm.Scan(dictPara)
     End Function
-    '这个函数专门用来openscan
-    Public Sub IntoScan()
+    '    '这个函数专门用来openscan
+    '    Public Sub IntoScan()
 
-    End Sub
+    '    End Sub
     '这个函数专门用来closescan
     Public Sub CloseScan()
 

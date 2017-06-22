@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\Kingdee\K3ERP\</OutputPath>
     <DocumentationFile>NewEpson.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <RegisterForComInterop>true</RegisterForComInterop>
@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.ESCANOCX2Lib">
-      <HintPath>..\..\..\..\..\Desktop\PT999999\SCANSDKsample_v0973_B1_170207\OCX2_SAMPLE2\OCX2_SAMPLE2\bin\Debug\AxInterop.ESCANOCX2Lib.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Kingdee\K3ERP\AxInterop.ESCANOCX2Lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

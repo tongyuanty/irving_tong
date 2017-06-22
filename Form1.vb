@@ -20,6 +20,7 @@
     '读取ini文件内容
     Public Shared Function GetINI(ByVal Section As String, ByVal AppName As String, ByVal lpDefault As String, ByVal FileName As String) As String
         Dim Str As String = LSet(Str, 256)
+        ' Dim Str As String
         GetPrivateProfileString(Section, AppName, lpDefault, Str, Len(Str), FileName)
         Return Microsoft.VisualBasic.Left(Str, InStr(Str, Chr(0)) - 1)
     End Function
@@ -28,7 +29,7 @@
         Return System.AppDomain.CurrentDomain.BaseDirectory()
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         ' Scan()
 
     End Sub
@@ -169,8 +170,13 @@
         End With
 
         ' On Error GoTo ErrHandle
+        Dim k = 0
+        While (obj = 0 And k < 0)
+            Threading.Thread.Sleep(100)
+            k = k + 1
+        End While
+        obj = 0
 
-       
         AxEScanControl1.OpenScanner()
 
         ret = AxEScanControl1.Execute(0)
@@ -179,14 +185,14 @@
             Threading.Thread.Sleep(100)
             i = i + 1
         End While
-        dictRet("obj") = obj
-        obj = 0
 
+        obj = 0
+        AxEScanControl1.CloseScanner()
         If ret = &H0 Then
             dictRet("isSuccess") = 1
-            'Dim fcount As Long
-            'fcount = System.IO.Directory.GetFiles(dictPara("FilePath"), "*", System.IO.SearchOption.TopDirectoryOnly).Length()
-            'dictRet("NumScan") = fcount
+            Dim fcount As Long
+            fcount = System.IO.Directory.GetFiles(dictPara("FilePath"), "*", System.IO.SearchOption.TopDirectoryOnly).Length()
+            dictRet("NumScan") = fcount
         Else
             dictRet("isSuccess") = 0
             dictRet("NumScan") = 0
@@ -194,7 +200,7 @@
             dictRet("ErrDesc") = GetErrDesc(ret)
         End If
 
-        
+
         Return dictRet
     End Function
 
@@ -245,7 +251,10 @@
 
     Private Sub AxEScanControl1_OnCompleted(ByVal sender As System.Object, ByVal e As AxESCANOCX2Lib._IEScanControl2Events_OnCompletedEvent) Handles AxEScanControl1.OnCompleted
         obj = 1
-        AxEScanControl1.CloseScanner()
+        '   AxEScanControl1.CloseScanner()
     End Sub
 
+    Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        AxEScanControl1.CloseScanner()
+    End Sub
 End Class
